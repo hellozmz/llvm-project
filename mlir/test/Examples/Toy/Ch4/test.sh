@@ -1,0 +1,22 @@
+export PATH=/mnt/data01/zmz/workspace/07ascendnpu/llvm/llvm-project/build/bin/:$PATH
+
+# toyc-ch4 ./invalid.mlir -emit=mlir  2>&1 
+
+toyc-ch4 ./scalar.toy -emit=mlir 2>&1 # | FileCheck ./scalar.toy
+toyc-ch4 ./scalar.toy -emit=mlir 2>&1 | FileCheck ./scalar.toy
+
+# toyc-ch4 ./codegen.toy -emit=mlir -mlir-print-debuginfo 2>&1 # | FileCheck ./codegen.toy
+
+# toyc-ch4 ./codegen.toy -emit=error 2>&1 # | FileCheck ./codegen.toy
+
+
+toyc-ch4 ./transpose_transpose.toy -emit=mlir -opt       # 添加优化选项，可以执行SimplifyRedundantTranspose，将两个transpose给消除掉
+
+# toyc-ch4 ./transpose_transpose.toy -emit=mlir
+
+toyc-ch4 ./trivial_reshape.toy -emit=mlir
+toyc-ch4 ./trivial_reshape.toy -emit=mlir -opt
+
+
+toyc-ch4 ./codegen.toy -emit=mlir 2>&1 # | FileCheck ./codegen.toy
+toyc-ch4 ./codegen.toy -emit=mlir -opt 2>&1 # | FileCheck ./codegen.toy

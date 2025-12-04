@@ -131,7 +131,7 @@ int dumpMLIR() {
     // Now that there is only one function, we can infer the shapes of each of
     // the operations.
     mlir::OpPassManager &optPM = pm.nest<mlir::toy::FuncOp>();
-    optPM.addPass(mlir::toy::createShapeInferencePass());
+    optPM.addPass(mlir::toy::createShapeInferencePass());   // 在opt命令下，可以对每个操作进行形状推理
     optPM.addPass(mlir::createCanonicalizerPass());
     optPM.addPass(mlir::createCSEPass());
 
