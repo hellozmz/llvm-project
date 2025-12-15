@@ -159,8 +159,8 @@ int dumpMLIR() {
 
     // Add optimizations if enabled.
     if (enableOpt) {
-      optPM.addPass(mlir::affine::createLoopFusionPass());
-      optPM.addPass(mlir::affine::createAffineScalarReplacementPass());
+      optPM.addPass(mlir::affine::  ());                // 增加循环融合
+      optPM.addPass(mlir::affine::createAffineScalarReplacementPass());   // 增加标量替换
     }
   }
 
